@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who said it?</title>
+    <link rel="stylesheet" href="static/styles.css">
+
+</head>
+<body>
+    <div class="wrapper">
+        <section class="gameplay">
+                <h1 class="starttxt" id="pstart">Click start to play!</h1>
+                <form id="form1">
+                    <button class="startbtn" id="button" onclick="hidestarttxt(event);event.preventDefault();">Start</button>
+                </form>  
+                <div id="tries" style="display:none;"></div>
+                <script>
+                    var quote_text = '{{quote_text}}';
+                    document.getElementById("quote").innerHTML = quote_text;
+                </script>
+                {% if show_elements %}
+                    <p id="quote"></p>
+                    <input type="text" id="tb">
+                    <button id="subbutton" onclick="checkquote()">Submit</button>
+                {% endif %}
+                <p id="bdate"></p>
+                <p id="bplace"></p>
+                <div id="gameover" style="display:none;">Game Over! The author was {{quote['author']}}</div>
+                <div id="gamewon" style="display:none;">Good Job! You got it right</div>
+                <button id="retrybutton" style="display:none;" onclick="location.reload();new_quote()">Retry</button>
+                <button id="replaybutton" style="display:none;" onclick="location.reload();new_quote()">Replay</button>
+                <script type="text/javascript">
+                    var current_lives = 3
+                    var button = document.getElementById("button");
+                    var d1 = document.getElementById("d1");
+                    document.getElementById("retrybutton").onclick = function() {
+                        location.href = '/';
+                    };
+                    document.getElementById("replaybutton").onclick = function() {
+                        location.href = '/';
+                    };
+
+
+                    function hidestarttxt(event) {
+                        event.preventDefault();
+                        document.getElementById("pstart").style.display = "none";
+                        document.getElementById("button").style.display = "none";
+                        document.getElementById("quote").style.display = "block";
+                        document.getElementById("quote").innerHTML = "{{quote_text}}";
+                        document.getElementById("tb").style.display = "block";
+                        document.getElementById("subbutton").style.display = "block";
+                        document.getElementById("tries").style.display = "block";
+                        document.getElementById("tries").innerHTML = "Remaining Tries: 3";
+                    }
+                    function startGame() {
+                        document.forms[0].submit();
+                    }
+                    var lives = 3;
+                    var bday_hint = '{{bday_hint}}';
+                    var bplace_hint = '{{bplace_hint}}';
+                    function checkquote(){
+                        var userInput = document.getElementById("tb").value;
+                    // Check if user input matches the author name
+                        if (userInput.toLowerCase().trim() == "{{quote['author'].lower().strip()}}"){
+                            document.getElementById("quote").style.display = "none";
+                                document.getElementById("tb").style.display = "none";
+                                document.getElementById("bplace").style.display = "none";
+                                document.getElementById("bdate").style.display = "none";
+                                document.getElementById("subbutton").style.display = "none";
+                                document.getElementById("tries").style.display = "none";
+                                document.getElementById("gamewon").style.display = "block";
+                                document.getElementById("replaybutton").style.display = "block";
+                                
+                        }else {
+                            lives--;
+                            document.getElementById("tries").innerHTML = "Remaining Tries: " + lives;
+                            if(lives == 2){
+                                document.getElementById("bdate").style.display = "block";
+                                document.getElementById("bdate").innerHTML = "Author's Birthdate: " + bday_hint;
+                            }
+                            if(lives == 1){
+                                document.getElementById("bplace").style.display = "block";
+                                document.getElementById("bplace").innerHTML = "Author's Birthplace: " + bplace_hint;
+                            }
+                            if(lives == 0){
+                                document.getElementById("quote").style.display = "none";
+                                document.getElementById("tb").style.display = "none";
+                                document.getElementById("subbutton").style.display = "none";
+                                document.getElementById("tries").style.display = "none";
+                                document.getElementById("bplace").style.display = "none";
+                                document.getElementById("bdate").style.display = "none";
+                                document.getElementById("gameover").style.display = "block";
+                                document.getElementById("retrybutton").style.display = "block";
+                            }
+                        }
+                    }
+                </script>
+        </section>
+    </div>
+</body>

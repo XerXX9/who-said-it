@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+}
+
+.wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 10px;
+}
+
+section.gameplay {
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+    padding: 2rem;
+    background-color: rgb(82,113,164);
+    color: white;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box; /* Added for better layout consistency */
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: -1;
+}
+
+.background {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-fit: cover; 
+    z-index: -1; 
+    transform: translateZ(-9px) scale(2);
+}
+
+#pstart {
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+    font-family: Arial, sans-serif;
+    top: 300px;
+}
+
+#button {    
+    position: relative;
+    background-color: #62529c;
+    color: white;
+    font-size: 25px;
+    margin: auto;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    top: 280px;
+}
+
+#quote {
+   display: none;
+   position: relative;
+   top: 300px;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+#bdate, #bplace {
+    display: none;
+    position: relative;
+    top: 300px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+ }
+
+#subbutton {
+    display: none;
+    position: relative;
+    background-color: #62529c;
+    color: white;
+    font-size: 25px;
+    margin: auto;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    top: 320px;
+}
+
+#tb {
+    display: none;
+    position: relative;
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    right: 0;
+    left: 0;
+    top: 300px;
+    margin: auto;
+    color: black;
+}
+
+#tries {
+    position: absolute;
+    top: 830px;
+    right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+}
+
+#gameover, #gamewon {
+    display: none;
+    position: relative;
+    top: 300px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#retrybutton, #replaybutton {
+    display: none;
+    position: relative;
+    background-color: #62529c;
+    color: white;
+    font-size: 25px;
+    margin: auto;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    top: 320px;
+}
+
+#howto {
+  height: 100%;
+  width: 100%;
+  font-size: 2rem;
+  padding: 2rem;
+  background-color: rgb(82, 113, 164);
+  color: white;
+  align-items: center;
+  text-align: center;
+}
